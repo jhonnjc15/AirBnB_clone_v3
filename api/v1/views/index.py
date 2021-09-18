@@ -11,7 +11,5 @@ def status():
     """
     function for status route that returns the status
     """
-    response = {
-               "status": "OK"
-               }
+    response = {"status": "OK"}
     return jsonify(response)
