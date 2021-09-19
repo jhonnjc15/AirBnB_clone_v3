@@ -80,7 +80,7 @@ class DBStorage:
         Returns the object based on the class and its ID, or None if not found
         """
         all_objects = self.all(cls)
-        class_id = "{}.{}".format(cls.name, id)
+        class_id = "{}.{}".format(cls.__name__, id)
         return all_objects.get(class_id)
 
     def count(self, cls=None):
