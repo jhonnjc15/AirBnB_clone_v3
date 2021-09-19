@@ -23,7 +23,7 @@ def stats():
     """
     response = {}
     classes = {
-        "Amenity": "ameniies",
+        "Amenity": "amenities",
         "City": "cities",
         "Place": "places",
         "Review": "reviews",
