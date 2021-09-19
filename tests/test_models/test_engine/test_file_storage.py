@@ -18,6 +18,7 @@ import json
 import os
 import pep8
 import unittest
+from models import storage
 FileStorage = file_storage.FileStorage
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
@@ -113,3 +114,32 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+
+class TestGetCount(unittest.TestCase):
+    """Test the DBstorage class"""
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
+    def test_count_all(self):
+        """Test that all returns a dictionaty"""
+        test_all_data = storage.all()
+        test = len(test_all_data)
+        test_count = storage.count()
+        self.assertEqual(test, test_count)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
+    def test_count_class(self):
+        """Test that all returns a dictionaty"""
+        test_city_data = storage.all('City')
+        test = len(test_city_data)
+        test_count = storage.count('City')
+        self.assertEqual(test, test_count)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
+    def test_get(self):
+        """Test that get a object a dictionaty"""
+        first_state_id = list(storage.all(State).values())[0].id
+        test_get_data = storage.get(State, first_state_id)
+        all_data = storage.all()
+        key = "State.{}".format(first_state_id)
+        test_value = all_data[key]
+        self.assertEqual(test_get_data, test_value)
