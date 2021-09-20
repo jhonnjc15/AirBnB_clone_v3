@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """users"""
 
-import re
+
 from flask import abort, jsonify, make_response, request
 from models import storage
 from models.user import User
@@ -46,9 +46,9 @@ def post_user():
     """create user"""
     if request.get_json() is None:
         abort(400, 'Not a JSON')
-    if 'email' not in request.json:
+    if 'email' not in request.get_json:
         abort(400, 'Missing email')
-    if 'password' not in request.json:
+    if 'password' not in request.get_json:
         abort(400, 'Missing password')
     req_json = request.get_json()
     user = User(**req_json)
