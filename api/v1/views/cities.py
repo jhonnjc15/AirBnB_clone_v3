@@ -18,12 +18,11 @@ def get_cities(state_id):
     cities = [cit.to_dict() for cit in state.cities]
     return jsonify(cities)
 
-
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
 def get_city(city_id):
     """get_cities"""
-    city = storage.get("City", city_id)
+    city = storage.get(City, city_id)
     if city is None:
         abort(404)
     return jsonify(city.to_dict())
@@ -33,7 +32,7 @@ def get_city(city_id):
                  strict_slashes=False)
 def delete_city(city_id):
     """delete city"""
-    city = storage.get("City", city_id)
+    city = storage.get(City, city_id)
     if city is None:
         abort(404)
     city.delete()
@@ -45,7 +44,7 @@ def delete_city(city_id):
                  strict_slashes=False)
 def post_city(state_id):
     """create city"""
-    state = storage.get("State", state_id)
+    state = storage.get(State, state_id)
     if state is None:
         abort(404)
     if request.get_json() is None:
@@ -63,7 +62,7 @@ def post_city(state_id):
                  strict_slashes=False)
 def put_city(city_id):
     """update city"""
-    city = storage.get("City", city_id)
+    city = storage.get(City, city_id)
     if city is None:
         abort(404)
     if request.get_json() is None:
