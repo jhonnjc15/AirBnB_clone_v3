@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""users"""
-
+"""places"""
 
 from flask import abort, jsonify, make_response, request
 from models import storage
@@ -10,7 +9,7 @@ from models.city import City
 from api.v1.views import app_views
 
 
-@app_views.route('/cities/<city_id>', methods=['GET'],
+@app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
 def get_places(city_id):
     """Get a list of places"""
