@@ -12,12 +12,10 @@ from models.city import City
                  strict_slashes=False)
 def get_cities(state_id):
     """get_cities"""
-    state = storage.get("State", state_id)
+    state = storage.get(State, state_id)
     if state is None:
         abort(404)
-    cities = []
-    for city in state.cities:
-        cities.append(city.to_dict())
+    cities = [cit.to_dict() for cit in state.cities]
     return jsonify(cities)
 
 
