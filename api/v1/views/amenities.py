@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """amenities"""
 
-import re
 from flask import abort, jsonify, make_response, request
-from AirBnB_clone_v3.models import amenity
 from models import storage
 from api.v1.views import app_views
 from models.amenity import Amenity
@@ -19,7 +17,7 @@ def get_amenities():
     return jsonify(get_amenitys)
 
 
-@app_views.route('/amenities/<string:amenity_id>', methods=['GET'],
+@app_views.route('/amenities/<amenity_id>', methods=['GET'],
                  strict_slashes=False)
 def get_amenity(amenity_id):
     """ get amenity"""
@@ -29,7 +27,7 @@ def get_amenity(amenity_id):
     return jsonify(amenity.to_dict())
 
 
-@app_views.route('/amenities/<string:amenity_id>', methods=['DELETE'],
+@app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_amenity(amenity_id):
     """delete amenity"""
