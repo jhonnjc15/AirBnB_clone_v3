@@ -46,9 +46,9 @@ def post_user():
     """create user"""
     if request.get_json() is None:
         abort(400, 'Not a JSON')
-    if 'email' not in request.get_json:
+    if 'email' not in request.get_json():
         abort(400, 'Missing email')
-    if 'password' not in request.get_json:
+    if 'password' not in request.get_json():
         abort(400, 'Missing password')
     req_json = request.get_json()
     user = User(**req_json)
@@ -65,7 +65,7 @@ def put_user(user_id):
         abort(404)
     if request.get_json() is None:
         abort(400, 'Not a JSON')
-    for a, v in request.get_json.items():
+    for a, v in request.get_json().items():
         if a not in ['id', 'email', 'created_at', 'updated_at']:
             setattr(user, a, v)
     user.save()
