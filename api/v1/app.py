@@ -17,6 +17,7 @@ app.register_blueprint(app_views)
 
 CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
+
 @app.teardown_appcontext
 def teardown(exception):
     """
