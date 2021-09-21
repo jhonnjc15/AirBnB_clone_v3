@@ -117,8 +117,8 @@ class TestFileStorage(unittest.TestCase):
 
 
 class TestGetCount(unittest.TestCase):
-    """Test the DBstorage class"""
-    @unittest.skipIf(models.storage_t != 'db', "just testing db storage")
+    """Test the Filestorage class"""
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def test_count_all(self):
         """Test that all returns a dictionaty"""
         test_all_data = storage.all()
@@ -126,7 +126,7 @@ class TestGetCount(unittest.TestCase):
         test_count = storage.count()
         self.assertEqual(test, test_count)
 
-    @unittest.skipIf(models.storage_t != 'db', "just testing db storage")
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def test_count_class(self):
         """Test that all returns a dictionaty"""
         test_city_data = storage.all('City')
@@ -134,7 +134,7 @@ class TestGetCount(unittest.TestCase):
         test_count = storage.count('City')
         self.assertEqual(test, test_count)
 
-    @unittest.skipIf(models.storage_t != 'db', "just testing db storage")
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def test_get(self):
         """Test that get a object a dictionaty"""
         first_state_id = list(storage.all(State).values())[0].id
