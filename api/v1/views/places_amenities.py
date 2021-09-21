@@ -22,7 +22,7 @@ def get_amenities(place_id):
     if STORAGE_TYPE == 'db':
         place_amenities_obj = place.amenities
     else:
-        place_amenities_obj = place.amenities_ids
+        place_amenities_obj = place.amenity_ids
     for i in place_amenities_obj:
         place_amenities.append(i.to_dict())
     return jsonify(place_amenities)
@@ -41,7 +41,7 @@ def delete_amenitiy(place_id, amenity_id):
     if STORAGE_TYPE == 'db':
         place_amenities_obj = place.amenities
     else:
-        place_amenities_obj = place.amenities_ids
+        place_amenities_obj = place.amenity_ids
     if amenity not in place_amenities_obj:
         abort(404)
     place_amenities_obj.remove(amenity)
