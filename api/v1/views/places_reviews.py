@@ -44,11 +44,11 @@ def delete_review(review_id):
     return jsonify({})
 
 
-@app_views.route('/places/<places_id>/reviews', methods=['POST'],
+@app_views.route('/places/<place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
 def post_review(place_id):
     """create a review"""
-    place = store.get(Place, place_id)
+    place = storage.get(Place, place_id)
     if place is None:
         abort(404)
     req_json = request.get_json()
@@ -62,7 +62,7 @@ def post_review(place_id):
     if 'text' not in req_json:
         abort(400, 'Missing text')
     review = Review(**req_json)
-    review["place_id"] = place_id
+    review.place_id = place_id
     review.save()
     return make_response(jsonify(review.to_dict()), 201)
 
